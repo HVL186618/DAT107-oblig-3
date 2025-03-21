@@ -1,0 +1,49 @@
+Ansatt
+	• ID (Primærnøkkel/PK)
+		○ varchar
+	• Brukernavn
+		○ Varchar(4)
+	• Fornavn
+		○ varchar
+	• Etternavn
+		○ varchar
+	• Dato
+		○ timestamp
+	• Stilling
+		○ varchar
+	• Månedslønn
+		○ varchar
+	• Avdeling
+		○ varchar
+	• Prosjekter
+		○ varchar
+
+Avdeling
+	• avdelingID (Primærnøkkel/PK?)
+		○ varchar
+	• Navn 
+		○ varchar
+	• SjefNavn
+		○ varchar
+
+Prosjekt
+	• ProsjektID (Primærnøkkel/PK?)
+		○ varchar
+	• Navn
+		○ varchar
+	• Beskrivelse
+		○ varchar
+
+AnsattProsjektTabell (Link tabell)
+		○ ansattID (foreign key)
+			§ varchar
+		○ prosjektID (foreign key)
+			§ varchar
+		○ rolle
+			§ varchar
+		○ Arbeidstid
+			§ varchar
+
+Ansatt tilhører prosjekt som tilhører avdeling?
+Eller, både prosjekt og Avdeling tilhører ansatt?
+Prosjekttabell tilhører både Ansatt og Prosjekt.
