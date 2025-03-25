@@ -2,6 +2,7 @@ package filiptest;
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JDBCGetDatabase {
@@ -15,18 +16,53 @@ public class JDBCGetDatabase {
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		// TODO Auto-generated method stub
-		String SQL = ""; //Fyll inn.
+		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
 		
 		Connection conn = null;
-		Statement stmnt = null;
+		java.sql.Statement stmnt = null;
 		Class.forName(JDBC_Driver);
+		System.out.println("Kobler til database...");
 	 	try {
-			DriverManager.getConnection(DB_URL, Brukernavn, Passord);
+			conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
 			System.out.println(DriverManager.getConnection(DB_URL, Brukernavn, Passord));
-		} catch (SQLException e) {
+			stmnt = conn.createStatement();
+			ResultSet rs = (stmnt).executeQuery(SQL);
+			try {
+			    Class.forName(JDBC_Driver);
+
+			    System.out.println("Connecting to database...");
+			    conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
+
+			    java.sql.Statement stmt = conn.createStatement();
+			    rs = stmnt.executeQuery(SQL);
+
+			    System.out.println("Result:");
+			    while (rs.next()) {
+			        String id = rs.getString("ansattID");
+			        String navn = rs.getString("brukernavn");
+
+			        System.out.print("\tansattID: " + id);
+			        System.out.println(", brukernavn: " + navn);
+			    }
+
+			    rs.close();
+			    stmt.close();
+			    conn.close();
+			    stmt.close();
+			}
+		 	finally {
+		 		System.out.println("Ferdig.");
+		 	}
+
+		} 
+	 	catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	 	finally {
+	 		System.out.println("Ferdig.");
+	 	}
+	 	
 
 	}
 
