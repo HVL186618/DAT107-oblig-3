@@ -47,7 +47,7 @@ public class JDBCGetDatabase {
 				
 			}
 			else if (valg == 4 ) {
-				//TODO
+				oppdaterAnsatt();
 				
 			}
 			else if (valg == 5 ) {
@@ -151,7 +151,7 @@ public class JDBCGetDatabase {
 	 		System.out.println("");
 	 	}
 	}
-	public static void leggTilAnsatt() {
+	public static void leggTilAnsatt() { //Funker ikke.
 	 	try {
 	 		String idInn = JOptionPane.showInputDialog("Sett inn ID:");
 	 		String brukernavnInn = JOptionPane.showInputDialog("Sett inn brukernavn:");
@@ -161,7 +161,7 @@ public class JDBCGetDatabase {
 	 		String lonnInn = JOptionPane.showInputDialog("Sett inn lønn:");
 	 		String avdelingInn = JOptionPane.showInputDialog("Sett inn avdeling:");
 	 		String prosjektInn = JOptionPane.showInputDialog("Sett inn prosjekt:");
-	 		String SQL = "INSERT INTO Ansatt (ansattID, brukernavn, fornavn, etternavn, dato, stilling, månedslønn, avdeling, prosjekter) VALUES ('" + idInn + "','"+ brukernavnInn + "', '" +fornavnInn + "', '" + etternavnInn + "', DEFAULT, '" + stillingInn + "', '"+ lonnInn + " kr', '" + avdelingInn + "', '"+ prosjektInn + "');"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
+	 		String SQL = "INSERT INTO SchemaAnsatt.Ansatt (ansattID, brukernavn, fornavn, etternavn, dato, stilling, månedslønn, avdeling, prosjekter) VALUES ('" + idInn + "','"+ brukernavnInn + "', '" +fornavnInn + "', '" + etternavnInn + "', DEFAULT, '" + stillingInn + "', '"+ lonnInn + " kr', '" + avdelingInn + "', '"+ prosjektInn + "');"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
 	 		
 			conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
 			//System.out.println(DriverManager.getConnection(DB_URL, Brukernavn, Passord));
@@ -177,6 +177,31 @@ public class JDBCGetDatabase {
 	 	finally {
 	 		System.out.println("");
 	 	}
+	}
+	public static void oppdaterAnsatt() {
+	 	try {
+	 		
+	 		String idInn = JOptionPane.showInputDialog("Hva er brukerID'en til brukeren du vil endre:");
+	 		String valg = JOptionPane.showInputDialog("Hva du vil endre for brukere:");
+	 		String omplasser = JOptionPane.showInputDialog("Hva du vil omplassere elementet i " + valg + " med:");
+			conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
+			//System.out.println(DriverManager.getConnection(DB_URL, Brukernavn, Passord));
+			String SQL = "UPDATE SchemaAnsatt.Ansatt\r\n"
+					+ "SET " +valg+ " = '" + omplasser + "'\r\n"
+					+ "WHERE ansattID = " + idInn + ";";
+			stmnt = conn.createStatement();
+			ResultSet rs = (stmnt).executeQuery(SQL);
+
+
+		} 
+	 	catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 	finally {
+	 		System.out.println("");
+	 	}
+		
 	}
 
 }
