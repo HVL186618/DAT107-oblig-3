@@ -35,15 +35,16 @@ public class JDBCGetDatabase {
 				System.out.println(">Stenger meny...");
 			}
 			else if (valg == 1 ) {
-				//TODO
+				sokAnsattID(); 
 				
 			}
 			else if (valg == 2 ) {
-				//TODO
+				
+				sokAnsattBruker(); //TODO: Fiks sokAnsattBruker()
 				
 			}
 			else if (valg == 3 ) {
-				getAnsatt();
+				getAnsattTabell();
 				
 			}
 			else if (valg == 4 ) {
@@ -51,17 +52,18 @@ public class JDBCGetDatabase {
 				
 			}
 			else if (valg == 5 ) {
-				//TODO
-				leggTilAnsatt();
+				leggTilAnsatt(); //TODO: Fiks leggTilAnsatt()
 				
 			}
 			else {
 				System.out.println(">ERROR: Ugyldig valg");
 			}
 		}
-
-		/*
+	}
+	public static void sokAnsattID() throws ClassNotFoundException {
 	 	try {
+	 		String sokID = JOptionPane.showInputDialog("Sett inn ID du vil søke for:");
+	 		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt where ansattID = '" + sokID + "'"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
 			conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
 			//System.out.println(DriverManager.getConnection(DB_URL, Brukernavn, Passord));
 			stmnt = conn.createStatement();
@@ -78,7 +80,13 @@ public class JDBCGetDatabase {
 			        String id = rs.getString("ansattID");
 			        String brukernavn = rs.getString("brukernavn");
 			        String fornavn = rs.getString("fornavn");
-			        System.out.println("[ansattID: " + id + ", brukernavn: " + brukernavn + ", Fornavn: " + fornavn + "]");
+			        String etternavn = rs.getString("etternavn");
+			        String dato = rs.getString("dato");
+			        String stilling = rs.getString("stilling");
+			        String lonn = rs.getString("månedslønn");
+			        String avdeling = rs.getString("avdeling");
+			        String prosjekter = rs.getString("prosjekter");
+			        System.out.println("[ansattID: " + id + ", brukernavn: " + brukernavn + ", Fornavn: " + fornavn + ", Etternavn: "  + etternavn + ", Dato: " + dato + ", Stilling: " + stilling  + ", Månedslønn: " + lonn + ", Avdeling: " + avdeling + ", Prosjekter:" + prosjekter + "]");
 			    }
 
 			    rs.close();
@@ -87,27 +95,68 @@ public class JDBCGetDatabase {
 			    stmt.close();
 			}
 		 	finally {
-		 		System.out.println("Ferdig.");
+		 		System.out.println("");
 		 	}
-		 
-		 
-		 
+
 		} 
 	 	catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	 	finally {
-	 		System.out.println("Ferdig.");
+	 		System.out.println("");
 	 	}
-	 	*/
-	 	
-	 	
-
 	}
-	public static void getAnsatt() throws ClassNotFoundException { //"It just works!" - Todd Howard
+	public static void getAnsattTabell() throws ClassNotFoundException { //"It just works!" - Todd Howard
 	 	try {
-	 		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
+	 		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt;";
+			conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
+			//System.out.println(DriverManager.getConnection(DB_URL, Brukernavn, Passord));
+			stmnt = conn.createStatement();
+			ResultSet rs = (stmnt).executeQuery(SQL);
+			try {
+			    Class.forName(JDBC_Driver);
+			    conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
+
+			    java.sql.Statement stmt = conn.createStatement();
+			    rs = stmnt.executeQuery(SQL);
+
+			    System.out.println("Result:");
+			    while (rs.next()) {
+			        String id = rs.getString("ansattID");
+			        String brukernavn = rs.getString("brukernavn");
+			        String fornavn = rs.getString("fornavn");
+			        String etternavn = rs.getString("etternavn");
+			        String dato = rs.getString("dato");
+			        String stilling = rs.getString("stilling");
+			        String lonn = rs.getString("månedslønn");
+			        String avdeling = rs.getString("avdeling");
+			        String prosjekter = rs.getString("prosjekter");
+			        System.out.println("[ansattID: " + id + ", brukernavn: " + brukernavn + ", Fornavn: " + fornavn + ", Etternavn: "  + etternavn + ", Dato: " + dato + ", Stilling: " + stilling  + ", Månedslønn: " + lonn + ", Avdeling: " + avdeling + ", Prosjekter:" + prosjekter + "]");
+			    }
+
+			    rs.close();
+			    stmt.close();
+			    conn.close();
+			    stmt.close();
+			}
+		 	finally {
+		 		System.out.println("");
+		 	}
+
+		} 
+	 	catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 	finally {
+	 		System.out.println("");
+	 	}
+	}
+	public static void sokAnsattBruker() throws ClassNotFoundException {
+	 	try {
+	 		String sokIni = JOptionPane.showInputDialog("Sett inn initialer du vil søke for:");
+	 		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt WHERE brukernavn CONTAINS '" + sokIni + "'";
 			conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
 			//System.out.println(DriverManager.getConnection(DB_URL, Brukernavn, Passord));
 			stmnt = conn.createStatement();
