@@ -48,7 +48,7 @@ public class JDBCGetDatabase {
 				
 			}
 			else if (valg == 4 ) {
-				oppdaterAnsatt();
+				oppdaterAnsatt(); //Test
 				
 			}
 			else if (valg == 5 ) {
@@ -232,14 +232,16 @@ public class JDBCGetDatabase {
 	 		
 	 		String idInn = JOptionPane.showInputDialog("Hva er brukerID'en til brukeren du vil endre:");
 	 		String valg = JOptionPane.showInputDialog("Hva du vil endre for brukere:");
+	 		//TODO: Endre slik at den kan endre to ting på en gang?
 	 		String omplasser = JOptionPane.showInputDialog("Hva du vil omplassere elementet i " + valg + " med:");
 			conn = DriverManager.getConnection(DB_URL, Brukernavn, Passord);
 			//System.out.println(DriverManager.getConnection(DB_URL, Brukernavn, Passord));
 			String SQL = "UPDATE SchemaAnsatt.Ansatt\r\n"
 					+ "SET " +valg+ " = '" + omplasser + "'\r\n"
-					+ "WHERE ansattID = " + idInn + ";";
+					+ "WHERE ansattID = '" + idInn + "'";
 			stmnt = conn.createStatement();
-			ResultSet rs = (stmnt).executeQuery(SQL);
+			ResultSet rs = (stmnt).executeQuery(SQL); //Returnerer ingen resultat.
+			//Kanskje den ikke forstår input delen med string?
 
 
 		} 

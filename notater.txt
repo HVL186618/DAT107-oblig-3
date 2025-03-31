@@ -46,4 +46,4 @@ AnsattProsjektTabell (Link tabell)
 
 Ansatt tilhører prosjekt som tilhører avdeling?
 Eller, både prosjekt og Avdeling tilhører ansatt?
-Prosjekttabell tilhører både Ansatt og Prosjekt.
+AnsattProsjektTabell tilhører både Ansatt og Prosjekt.
