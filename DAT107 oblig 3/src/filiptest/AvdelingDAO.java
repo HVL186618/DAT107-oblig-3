@@ -10,6 +10,7 @@ public class AvdelingDAO {
 	
 	public AvdelingDAO() {
         emf = Persistence.createEntityManagerFactory("PersonAnsattStudentPU",
-				Map.of("jakarta.persistence.jdbc.password", Passwords.password));
+				Map.of("jakarta.persistence.jdbc.password", Passwords.password))
+        		;
 	}
 }
