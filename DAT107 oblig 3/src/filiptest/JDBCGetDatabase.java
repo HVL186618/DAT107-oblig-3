@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 import javax.swing.JOptionPane;
 
 public class JDBCGetDatabase {
@@ -18,9 +19,11 @@ public class JDBCGetDatabase {
 	public static int active = 1;
 	public static Connection conn;
 	public static java.sql.Statement stmnt;
+
+
 	public static void main(String[] args) throws ClassNotFoundException {
 		// TODO Auto-generated method stub
-		
+
 		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
 		
 		conn = null;

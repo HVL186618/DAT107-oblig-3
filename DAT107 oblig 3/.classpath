@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/filiu/Downloads/postgresql-42.7.2.jar"/>
+	<classpathentry kind="lib" path="/f1-eksempel2-personer-jpa/lib/jakarta.persistence-api-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
