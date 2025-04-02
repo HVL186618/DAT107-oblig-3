@@ -4,10 +4,9 @@
 		xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd" 
 		version="3.0">		
 
-	<persistence-unit name="vitnemalPU" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="ansattPU" transaction-type="RESOURCE_LOCAL">
 	
-		<class>no.hvl.dat107.Vitnemal</class>
-		<class>no.hvl.dat107.Karakter</class>
+		<class>JDBC.Ansatt</class>
 				
 		<properties>
 		    <!--  Generelle JPA properties -->

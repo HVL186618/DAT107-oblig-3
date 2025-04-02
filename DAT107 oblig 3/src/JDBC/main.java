@@ -1,6 +1,10 @@
 package JDBC;
 
 import java.sql.Connection;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 public class main {
 	static final String JDBC_Driver = "org.postgresql.Driver";
@@ -13,16 +17,30 @@ public class main {
 	public static int active = 1;
 	public static Connection conn;
 	public static java.sql.Statement stmnt;
-	public static void main(String[] args) throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
-		
-		conn = null;
-		stmnt = null;
-		Class.forName(JDBC_Driver);
-		System.out.println(">Kobler til database...");
-		System.out.println(">...");
+	
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ansattPU");
+        EntityManager em = emf.createEntityManager();
 
-	}
+        Ansatt a = em.find(Ansatt.class, "NO 1");
+        System.out.println(a.getFornavn());
+
+        em.getTransaction().begin();
+        a.setFornavn("Ola");
+        em.getTransaction().commit();
+        
+        System.out.println(a);
+        
+        // search query
+        TypedQuery<Ansatt> q = em.createQuery(
+        	    "SELECT a FROM Ansatt a WHERE a.brukernavn = :brukernavn", Ansatt.class);
+    	q.setParameter("brukernavn", "Br2");
+
+    	Ansatt b = q.getSingleResult();
+    	System.out.println(b);
+        
+        em.close();
+        emf.close();
+    }
 
 }
