@@ -24,6 +24,11 @@ public class main {
         Ansatt a = em.find(Ansatt.class, "NO 1");
         System.out.println(a);
 
+        em.getTransaction().begin();
+        a.setFornavn("Ola");
+        em.getTransaction().commit();
+        System.out.println(a);
+
         em.close();
         emf.close();
     }
