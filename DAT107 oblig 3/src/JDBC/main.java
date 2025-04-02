@@ -1,6 +1,9 @@
 package JDBC;
 
 import java.sql.Connection;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.EntityManager;
 
 public class main {
 	static final String JDBC_Driver = "org.postgresql.Driver";
@@ -13,16 +16,16 @@ public class main {
 	public static int active = 1;
 	public static Connection conn;
 	public static java.sql.Statement stmnt;
-	public static void main(String[] args) throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
-		
-		conn = null;
-		stmnt = null;
-		Class.forName(JDBC_Driver);
-		System.out.println(">Kobler til database...");
-		System.out.println(">...");
+	
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ansattPU");
+        EntityManager em = emf.createEntityManager();
 
-	}
+        Ansatt a = em.find(Ansatt.class, "NO 1");
+        System.out.println(a);
+
+        em.close();
+        emf.close();
+    }
 
 }
