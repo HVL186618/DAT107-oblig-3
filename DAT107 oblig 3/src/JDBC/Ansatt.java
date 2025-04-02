@@ -8,20 +8,20 @@ import jakarta.persistence.Table;
 
 public class Ansatt {
 	
-	@Id	private Integer id;
+	@Id	private String id;
 	private String navn;
 	
 	public Ansatt() {}
 	
-	public Ansatt(Integer id, String navn) {
+	public Ansatt(String id, String navn) {
 		this.id = id;
 		this.navn = navn;
 	}
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getNavn() {
