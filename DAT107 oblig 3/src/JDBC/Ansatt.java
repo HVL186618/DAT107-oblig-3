@@ -1,5 +1,7 @@
 package JDBC;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 
 @Entity
