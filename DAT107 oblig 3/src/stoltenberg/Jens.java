@@ -243,7 +243,7 @@ public class Jens {
 			String SQL = "UPDATE SchemaAnsatt.Ansatt\r\n"
 					+ "SET " +valg+ " = '" + omplasser + "'\r\n"
 					+ "WHERE ansattID = '" + idInn + "'";
-			System.out.println( )
+			System.out.println(""); //Hva prøver du å printe ut her?
 			stmnt = conn.createStatement();
 			ResultSet rs = (stmnt).executeQuery(SQL); //Returnerer ingen resultat.
 			//Kanskje den ikke forstår input delen med string?
