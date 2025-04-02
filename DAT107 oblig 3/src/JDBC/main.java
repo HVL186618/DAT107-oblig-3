@@ -1,8 +1,18 @@
 package JDBC;
 
 import java.sql.Connection;
+<<<<<<< Updated upstream
 import JDBC.Ansatt;
 import JDBC.AnsattCRUD;
+=======
+
+import javax.swing.JOptionPane;
+
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+>>>>>>> Stashed changes
 
 public class main {
 	static final String JDBC_Driver = "org.postgresql.Driver";
@@ -27,6 +37,32 @@ public class main {
 		String inn;
 		Ansatt.hentAnsatt(inn);
 
+<<<<<<< Updated upstream
 	}
+=======
+        Ansatt a = em.find(Ansatt.class, "NO 1");
+        System.out.println(a.getFornavn());
+
+        em.getTransaction().begin();
+        a.setFornavn("Ola");
+        em.getTransaction().commit();
+        
+        System.out.println(a);
+        
+        // search query
+        TypedQuery<Ansatt> q = em.createQuery(
+        	    "SELECT a FROM Ansatt a WHERE a.brukernavn = :brukernavn", Ansatt.class);
+    	q.setParameter("brukernavn", "Br2");
+
+    	Ansatt b = q.getSingleResult();
+    	System.out.println(b);
+        
+    	String idInput = JOptionPane.showInputDialog("Hva ID vil du søke for?");
+    	Ansatt c = em.find(Ansatt.class, idInput);
+    	System.out.println(c);
+        em.close();
+        emf.close();
+    }
+>>>>>>> Stashed changes
 
 }
