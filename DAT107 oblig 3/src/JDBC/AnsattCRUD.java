@@ -12,6 +12,10 @@ public interface AnsattCRUD {
 	//Henter ut data fra databasen. Alle.
 	List<Ansatt> hentAlleAnsatt();
 	
+	String søkID();
+	
+	String søkBr();
+	
 	
 	
 	
