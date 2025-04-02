@@ -4,6 +4,7 @@ import java.sql.Connection;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 public class main {
 	static final String JDBC_Driver = "org.postgresql.Driver";
@@ -22,13 +23,22 @@ public class main {
         EntityManager em = emf.createEntityManager();
 
         Ansatt a = em.find(Ansatt.class, "NO 1");
-        System.out.println(a);
+        System.out.println(a.getFornavn());
 
         em.getTransaction().begin();
         a.setFornavn("Ola");
         em.getTransaction().commit();
+        
         System.out.println(a);
+        
+        // search query
+        TypedQuery<Ansatt> q = em.createQuery(
+        	    "SELECT a FROM Ansatt a WHERE a.brukernavn = :brukernavn", Ansatt.class);
+    	q.setParameter("brukernavn", "Br2");
 
+    	Ansatt b = q.getSingleResult();
+    	System.out.println(b);
+        
         em.close();
         emf.close();
     }
