@@ -1,4 +1,4 @@
-package filiptest;
+package stoltenberg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,12 +8,12 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-public class JDBCGetDatabase {
+public class Jens {
 	
 	static final String JDBC_Driver = "org.postgresql.Driver";
-	static final String Database = "h186618";
-	static final String Brukernavn = "h186618";
-	static final String Passord = "#HVL_SQL233!"; //legg til "-WITH PASSWORD '#HVL_SQL233!';" inni PGAdmin for å få tilgang med dette passordet.
+	static final String Database = "h186611";
+	static final String Brukernavn = "h186611";
+	static final String Passord = "pass"; //legg til "-WITH PASSWORD '#HVL_SQL233!';" inni PGAdmin for å få tilgang med dette passordet.
 	
 	static final String Tjener_og_port = "ider-database.westeurope.cloudapp.azure.com:5433"; //Måtte legge til PSQL port for at dette skulle fungere. Enten 5433 eller 5432
 	static final String DB_URL = "jdbc:postgresql://" + Tjener_og_port + "/" + Database;
@@ -243,6 +243,7 @@ public class JDBCGetDatabase {
 			String SQL = "UPDATE SchemaAnsatt.Ansatt\r\n"
 					+ "SET " +valg+ " = '" + omplasser + "'\r\n"
 					+ "WHERE ansattID = '" + idInn + "'";
+			System.out.println( )
 			stmnt = conn.createStatement();
 			ResultSet rs = (stmnt).executeQuery(SQL); //Returnerer ingen resultat.
 			//Kanskje den ikke forstår input delen med string?
