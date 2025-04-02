@@ -1,10 +1,6 @@
 package JDBC;
 
 import java.sql.Connection;
-<<<<<<< Updated upstream
-import JDBC.Ansatt;
-import JDBC.AnsattCRUD;
-=======
 
 import javax.swing.JOptionPane;
 
@@ -12,7 +8,6 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
->>>>>>> Stashed changes
 
 public class main {
 	static final String JDBC_Driver = "org.postgresql.Driver";
@@ -22,24 +17,15 @@ public class main {
 	
 	static final String Tjener_og_port = "ider-database.westeurope.cloudapp.azure.com:5433"; //Måtte legge til PSQL port for at dette skulle fungere. Enten 5433 eller 5432
 	static final String DB_URL = "jdbc:postgresql://" + Tjener_og_port + "/" + Database;
+	public static String elementValg;
 	public static int active = 1;
 	public static Connection conn;
 	public static java.sql.Statement stmnt;
-	public static void main(String[] args) throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		String SQL = "SELECT * FROM SchemaAnsatt.Ansatt"; //FORMAT: SELECT * from 'navn på schema som tilhører tabell'.'navn på tabell'
-		
-		conn = null;
-		stmnt = null;
-		Class.forName(JDBC_Driver);
-		System.out.println(">Kobler til database...");
-		System.out.println(">...");
-		String inn;
-		Ansatt.hentAnsatt(inn);
+	
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ansattPU");
+        EntityManager em = emf.createEntityManager();
 
-<<<<<<< Updated upstream
-	}
-=======
         Ansatt a = em.find(Ansatt.class, "NO 1");
         System.out.println(a.getFornavn());
 
@@ -51,18 +37,70 @@ public class main {
         
         // search query
         TypedQuery<Ansatt> q = em.createQuery(
-        	    "SELECT a FROM Ansatt a WHERE a.brukernavn = :brukernavn", Ansatt.class);
+        	    "SELECT a FROM Ansatt a WHERE a.brukernavn = :brukernavn", Ansatt.class); //: betyr at man skal endre brukernavn til noe annet.
     	q.setParameter("brukernavn", "Br2");
 
     	Ansatt b = q.getSingleResult();
     	System.out.println(b);
+        //em.close();
+        //emf.close();
         
-    	String idInput = JOptionPane.showInputDialog("Hva ID vil du søke for?");
-    	Ansatt c = em.find(Ansatt.class, idInput);
-    	System.out.println(c);
+
+		while (active != 0) {
+			int valg = Integer.parseInt(JOptionPane.showInputDialog("Lukk Meny (0)\nSøke etter ansatt på ansattID(1)\nSøke etter ansatt på Brukernavn (2)\nUtliste alle Ansatte (3)\nOppdater Ansatt Stiling/Lønn (4)\nLegg til ny Ansatt (5)\nInput valg:"));
+			if (valg == 0) {
+				active = 0;
+				System.out.println(">Stenger meny...");
+			}
+			else if (valg == 1 ) {
+		    	String idInput = JOptionPane.showInputDialog("Hva ID vil du søke for?");
+		    	Ansatt valg1= em.find(Ansatt.class, idInput);
+		    	System.out.println(valg1);
+				
+			}
+			else if (valg == 2 ) {
+				//TODO - finn ut hvordan man får hele tabellen listet ut.
+				Ansatt valg2 = em.find(Ansatt.class, "*"); //Funker ikke. Hvordan får man alle?
+				System.out.println(Ansatt.class);
+				
+			}
+			else if (valg == 3 ) {
+				//TODO
+			}
+			else if (valg == 4 ) {
+				//TODO - fiks koden.
+				String idInput = JOptionPane.showInputDialog("Hva ID vil du søke for?");
+				int gyldigValg = 0;
+				elementValg = JOptionPane.showInputDialog("Valg: stilling, månedslønn\nHva du vil endre for brukeren?:");
+				/*
+				while (gyldigValg == 0) {
+					elementValg = JOptionPane.showInputDialog("\nValg: stilling, månedslønn\nHva du vil endre for brukeren?:");
+
+					if (elementValg != "stilling" || elementValg != "månedslønn")  {
+						System.out.println(">Ugyldig valg!");
+					}
+					else {
+						gyldigValg = 1;
+					}
+				}
+				*/
+				String endreValg = JOptionPane.showInputDialog("Hva skal verdien i '" + elementValg + "' endres til?:");
+
+				Ansatt valg4 = em.find(Ansatt.class, idInput);
+		        TypedQuery<Ansatt> query = em.createQuery(
+		        	    "SELECT valg4 FROM Ansatt valg4 WHERE valg4."  + elementValg + " = :" + elementValg + "", Ansatt.class); //: betyr at man skal endre brukernavn til noe annet.
+		    	q.setParameter(elementValg, endreValg); //Klarer ikke å endre element etter valg. Vet ikke hvorfor.
+			}
+			else if (valg == 5 ) {
+				//TODO
+				
+			}
+			else {
+				System.out.println(">ERROR: Ugyldig valg");
+			}
+		}
         em.close();
         emf.close();
     }
->>>>>>> Stashed changes
 
 }
