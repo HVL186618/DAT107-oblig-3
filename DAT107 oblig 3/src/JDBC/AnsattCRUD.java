@@ -1,13 +1,18 @@
 package JDBC;
 
+import java.util.List;
+
 public interface AnsattCRUD {
-	public String getId();
+	//Oppretter ny Ansatt rad.
+	void lagreAnsatt(Ansatt a);
 	
-	public void setId();
+	//Henter ut data fra databasen. En enkelt
+	Ansatt hentAnsatt(String id);
 	
-	public String getBrukernavn();
+	//Henter ut data fra databasen. Alle.
+	List<Ansatt> hentAlleAnsatt();
 	
-	public void setBrukernavn();
+	
 	
 	
 }
