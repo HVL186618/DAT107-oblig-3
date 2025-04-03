@@ -1,5 +1,5 @@
 create Schema SchemaAvdeling;
-set search_path to SchemaAvdeling;
+set search_path to SchemaAnsatt;
 CREATE TABLE Avdeling
 (
     avdelingID varchar(40) primary key,
