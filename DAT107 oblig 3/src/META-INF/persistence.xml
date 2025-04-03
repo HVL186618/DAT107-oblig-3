@@ -7,6 +7,8 @@
 	<persistence-unit name="ansattPU" transaction-type="RESOURCE_LOCAL">
 	
 		<class>JDBC.Ansatt</class>
+		<class>JDBC.Avdeling</class>
+
 				
 		<properties>
 		    <!--  Generelle JPA properties -->

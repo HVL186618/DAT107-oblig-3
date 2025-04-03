@@ -29,11 +29,12 @@ public class Ansatt {
     @Column(name = "månedslønn", length = 30)
     private String månedslønn;
 
-    @Column(name = "avdeling", length = 30)
-    private String avdeling;
-
     @Column(name = "prosjekter", length = 30)
     private String prosjekter;
+
+    @ManyToOne
+    @JoinColumn(name = "avdeling", referencedColumnName = "avdelingID")
+    private Avdeling avdeling;
 
     public Ansatt() {}
 
