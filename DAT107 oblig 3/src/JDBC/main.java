@@ -26,22 +26,21 @@ public class main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ansattPU");
         EntityManager em = emf.createEntityManager();
 
-        Ansatt a = em.find(Ansatt.class, "NO 1");
-        System.out.println(a.getFornavn());
+        //Ansatt a = em.find(Ansatt.class, "NO 1");
+        //System.out.println(a.getFornavn());
 
-        em.getTransaction().begin();
-        a.setFornavn("Ola");
-        em.getTransaction().commit();
+        //em.getTransaction().begin();
+        //a.setFornavn("Ola");
+        //em.getTransaction().commit();
         
-        System.out.println(a);
+        //System.out.println(a);
         
         // search query
-        TypedQuery<Ansatt> q = em.createQuery(
-        	    "SELECT a FROM Ansatt a WHERE a.brukernavn = :brukernavn", Ansatt.class); //: betyr at man skal endre brukernavn til noe annet.
-    	q.setParameter("brukernavn", "Br2");
+        //TypedQuery<Ansatt> q = em.createQuery("SELECT a FROM Ansatt a WHERE a.brukernavn = :brukernavn", Ansatt.class); // :tekst er brukt til variable substitution
+    	//q.setParameter("brukernavn", "Br2");
 
-    	Ansatt b = q.getSingleResult();
-    	System.out.println(b);
+    	//Ansatt b = q.getSingleResult();
+    	//System.out.println(b);
         //em.close();
         //emf.close();
         
@@ -65,7 +64,11 @@ public class main {
 				
 			}
 			else if (valg == 3 ) {
-				//TODO
+				TypedQuery<Ansatt> alleAnsatte = em.createQuery("SELECT a FROM Ansatt a", Ansatt.class);
+				for (Ansatt ansatt : alleAnsatte.getResultList()) {
+				    System.out.println(ansatt);
+				}
+
 			}
 			else if (valg == 4 ) {
 				//TODO - fiks koden.
@@ -87,9 +90,14 @@ public class main {
 				String endreValg = JOptionPane.showInputDialog("Hva skal verdien i '" + elementValg + "' endres til?:");
 
 				Ansatt valg4 = em.find(Ansatt.class, idInput);
-		        TypedQuery<Ansatt> query = em.createQuery(
-		        	    "SELECT valg4 FROM Ansatt valg4 WHERE valg4."  + elementValg + " = :" + elementValg + "", Ansatt.class); //: betyr at man skal endre brukernavn til noe annet.
-		    	q.setParameter(elementValg, endreValg); //Klarer ikke å endre element etter valg. Vet ikke hvorfor.
+				
+				em.getTransaction().begin();
+				if (elementValg == "stilling") valg4.setStilling(endreValg);
+				else if (elementValg == "månedslønn") valg4.setMånedslønn(endreValg);
+		    	em.getTransaction().commit();
+		    	
+		        //TypedQuery<Ansatt> query = em.createQuery("SELECT valg4 FROM Ansatt valg4 WHERE valg4."  + elementValg + " = :" + elementValg + "", Ansatt.class); //: betyr at man skal endre brukernavn til noe annet.
+		    	//query.setParameter(elementValg, endreValg); //Klarer ikke å endre element etter valg. Vet ikke hvorfor.
 			}
 			else if (valg == 5 ) {
 				//TODO
