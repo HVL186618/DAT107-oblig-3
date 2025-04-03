@@ -27,10 +27,10 @@ public class main {
         EntityManager em = emf.createEntityManager();
 
         Ansatt a = em.find(Ansatt.class, "NO 1");
-        System.out.println(a.getNavn());
+        System.out.println(a.getFornavn());
 
         em.getTransaction().begin();
-        a.setNavn("Ola");
+        a.setFornavn("Ola");
         em.getTransaction().commit();
         
         System.out.println(a);
