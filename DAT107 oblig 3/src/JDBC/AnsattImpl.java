@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Ansatt", schema = "SchemaAnsatt")
-public class Ansatt {
+public class AnsattImpl {
 
     @Id
     @Column(name = "ansattID", length = 40)
@@ -35,9 +35,9 @@ public class Ansatt {
     @Column(name = "prosjekter", length = 30)
     private String prosjekter;
 
-    public Ansatt() {}
+    public AnsattImpl() {}
 
-    public Ansatt(String id, String brukernavn, String fornavn, String etternavn, Timestamp dato,
+    public AnsattImpl(String id, String brukernavn, String fornavn, String etternavn, Timestamp dato,
                   String stilling, String månedslønn, String avdeling, String prosjekter) {
         this.id = id;
         this.brukernavn = brukernavn;
