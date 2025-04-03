@@ -1,6 +1,9 @@
 package JDBC;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -99,9 +102,39 @@ public class main {
 		        //TypedQuery<Ansatt> query = em.createQuery("SELECT valg4 FROM Ansatt valg4 WHERE valg4."  + elementValg + " = :" + elementValg + "", Ansatt.class); //: betyr at man skal endre brukernavn til noe annet.
 		    	//query.setParameter(elementValg, endreValg); //Klarer ikke å endre element etter valg. Vet ikke hvorfor.
 			}
-			else if (valg == 5 ) {
-				//TODO
-				
+			else if (valg == 5) {
+			    try {
+			        String idInn = JOptionPane.showInputDialog("Sett inn ID:");
+			        String brukernavnInn = JOptionPane.showInputDialog("Sett inn brukernavn:");
+			        String fornavnInn = JOptionPane.showInputDialog("Sett inn fornavn:");
+			        String etternavnInn = JOptionPane.showInputDialog("Sett inn etternavn:");
+			        String stillingInn = JOptionPane.showInputDialog("Sett inn stilling:");
+			        String lonnInn = JOptionPane.showInputDialog("Sett inn lønn:");
+			        String avdelingInn = JOptionPane.showInputDialog("Sett inn avdeling:");
+			        String prosjektInn = JOptionPane.showInputDialog("Sett inn prosjekt:");
+
+			        Ansatt nyAnsatt = new Ansatt();
+			        nyAnsatt.setId(idInn);
+			        nyAnsatt.setBrukernavn(brukernavnInn);
+			        nyAnsatt.setFornavn(fornavnInn);
+			        nyAnsatt.setEtternavn(etternavnInn);
+			        nyAnsatt.setStilling(stillingInn);
+			        nyAnsatt.setMånedslønn(lonnInn);
+			        nyAnsatt.setAvdeling(avdelingInn);
+			        nyAnsatt.setProsjekter(prosjektInn);
+			        nyAnsatt.setDato(new java.sql.Timestamp(System.currentTimeMillis()));
+
+			        em.getTransaction().begin();
+			        em.persist(nyAnsatt);
+			        em.getTransaction().commit();
+
+			        System.out.println(">Ny ansatt lagret: " + nyAnsatt);
+			    } catch (Exception e) {
+			        System.out.println("🧨 Feil under lagring: " + e.getMessage());
+			        e.printStackTrace();
+			    } finally {
+			        System.out.println(">Done.");
+			    }
 			}
 			else {
 				System.out.println(">ERROR: Ugyldig valg");
@@ -110,5 +143,4 @@ public class main {
         em.close();
         emf.close();
     }
-
 }
