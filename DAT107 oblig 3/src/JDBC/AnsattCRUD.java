@@ -6,9 +6,6 @@ public interface AnsattCRUD {
 	//Oppretter ny Ansatt rad.
 	void lagreAnsatt(Ansatt a);
 	
-	/** Read1 - Hente ut data fra databasen. En enkelt. */
-	Ansatt hentAnsatt(int id);
-	
 	//Henter ut data fra databasen. En enkelt
 	Ansatt hentAnsatt(String id);
 	
