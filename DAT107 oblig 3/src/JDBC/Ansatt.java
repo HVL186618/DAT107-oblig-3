@@ -33,13 +33,13 @@ public class Ansatt {
     private String prosjekter;
 
     @ManyToOne
-    @JoinColumn(name = "avdeling", referencedColumnName = "avdelingID")
+    @JoinColumn(name = "avdelingID", referencedColumnName = "avdelingID")
     private Avdeling avdeling;
 
     public Ansatt() {}
 
     public Ansatt(String id, String brukernavn, String fornavn, String etternavn, Timestamp dato,
-                  String stilling, String månedslønn, String avdeling, String prosjekter) {
+                  String stilling, String månedslønn, Avdeling avdeling, String prosjekter) {
         this.id = id;
         this.brukernavn = brukernavn;
         this.fornavn = fornavn;
@@ -74,8 +74,8 @@ public class Ansatt {
     public String getMånedslønn() { return månedslønn; }
     public void setMånedslønn(String månedslønn) { this.månedslønn = månedslønn; }
 
-    public String getAvdeling() { return avdeling; }
-    public void setAvdeling(String avdeling) { this.avdeling = avdeling; }
+    public Avdeling getAvdeling() { return avdeling; }
+    public void setAvdeling(Avdeling avdeling) { this.avdeling = avdeling; }
 
     public String getProsjekter() { return prosjekter; }
     public void setProsjekter(String prosjekter) { this.prosjekter = prosjekter; }
