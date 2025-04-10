@@ -17,7 +17,7 @@ CREATE TABLE Ansatt (
     dato timestamp,
     stilling varchar(15),
     månedslønn varchar(30),
-    avdelingID SERIAL REFERENCES Avdeling(avdelingID),
+    avdeling SERIAL REFERENCES Avdeling(avdelingID),
     prosjekter varchar(30)
 );
 
