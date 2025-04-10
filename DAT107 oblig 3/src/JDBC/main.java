@@ -68,6 +68,7 @@ public class main {
 			}
 			else if (valg == 3 ) {
 				TypedQuery<Ansatt> alleAnsatte = em.createQuery("SELECT a FROM Ansatt a", Ansatt.class);
+				//alleAnsatte.getResultList();
 				for (Ansatt ansatt : alleAnsatte.getResultList()) {
 				    System.out.println(ansatt);
 				}
@@ -120,7 +121,7 @@ public class main {
 			        nyAnsatt.setEtternavn(etternavnInn);
 			        nyAnsatt.setStilling(stillingInn);
 			        nyAnsatt.setMånedslønn(lonnInn);
-			        nyAnsatt.setAvdeling(avdelingInn);
+			        // nyAnsatt.setAvdeling(avdelingInn);  // TODO: String til Avdeling
 			        nyAnsatt.setProsjekter(prosjektInn);
 			        nyAnsatt.setDato(new java.sql.Timestamp(System.currentTimeMillis()));
 
