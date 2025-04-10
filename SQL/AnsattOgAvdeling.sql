@@ -24,3 +24,6 @@ CREATE TABLE Ansatt (
 ALTER TABLE Avdeling
 ADD CONSTRAINT fk_sjef
 FOREIGN KEY (sjefID) REFERENCES Ansatt(ansattID);
+
+alter table SchemaAnsatt.Ansatt
+alter column avdeling drop not null; --Dropper constrainten som gjør at man ikke kan bruke null
