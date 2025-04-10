@@ -17,10 +17,13 @@ CREATE TABLE Ansatt (
     dato timestamp,
     stilling varchar(15),
     månedslønn varchar(30),
-    avdelingID SERIAL REFERENCES Avdeling(avdelingID),
+    avdeling SERIAL REFERENCES Avdeling(avdelingID),
     prosjekter varchar(30)
 );
 
 ALTER TABLE Avdeling
 ADD CONSTRAINT fk_sjef
 FOREIGN KEY (sjefID) REFERENCES Ansatt(ansattID);
+
+alter table SchemaAnsatt.Ansatt
+alter column avdeling drop not null; --Dropper constrainten som gjør at man ikke kan bruke null
