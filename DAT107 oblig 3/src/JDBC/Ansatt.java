@@ -6,10 +6,15 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "Ansatt", schema = "SchemaAnsatt")
 public class Ansatt {
-
+	/*
     @Id
     @Column(name = "ansattID", length = 40)
     private String id;
+    */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "avdelingID")
+    private int id;
 
     @Column(name = "brukernavn", length = 4, nullable = false)
     private String brukernavn;
@@ -38,7 +43,7 @@ public class Ansatt {
 
     public Ansatt() {}
 
-    public Ansatt(String id, String brukernavn, String fornavn, String etternavn, Timestamp dato,
+    public Ansatt(Integer id, String brukernavn, String fornavn, String etternavn, Timestamp dato,
                   String stilling, String månedslønn, Avdeling avdeling, String prosjekter) {
         this.id = id;
         this.brukernavn = brukernavn;
@@ -53,8 +58,8 @@ public class Ansatt {
 
     // Getters and setters...
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
     public String getBrukernavn() { return brukernavn; }
     public void setBrukernavn(String brukernavn) { this.brukernavn = brukernavn; }

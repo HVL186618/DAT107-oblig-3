@@ -67,12 +67,17 @@ public class main {
 				
 			}
 			else if (valg == 3 ) {
-				TypedQuery<Ansatt> alleAnsatte = em.createQuery("SELECT a FROM Ansatt a", Ansatt.class);
+				TypedQuery<Ansatt> alleAnsatte = em.createQuery("SELECT a FROM Ansatt a", Ansatt.class);  // her skjer error
+				/*
+				 * den prøver Call: SELECT ansattID, brukernavn, dato, etternavn, fornavn, månedslønn, prosjekter, stilling, avdeling FROM SchemaAnsatt.Ansatt
+				 * men avdeling skal være avdelingid, forstår ikke hvorfor
+				 */
+
 				//alleAnsatte.getResultList();
+				
 				for (Ansatt ansatt : alleAnsatte.getResultList()) {
 				    System.out.println(ansatt);
 				}
-
 			}
 			else if (valg == 4 ) {
 				//TODO - fiks koden.
