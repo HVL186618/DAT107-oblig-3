@@ -49,7 +49,15 @@ public class main {
         
 
 		while (active != 0) {
-			int valg = Integer.parseInt(JOptionPane.showInputDialog("Lukk Meny (0)\nSøke etter ansatt på ansattID(1)\nSøke etter ansatt på Brukernavn (2)\nUtliste alle Ansatte (3)\nOppdater Ansatt Stiling/Lønn (4)\nLegg til ny Ansatt (5)\nInput valg:"));
+			int valg = Integer.parseInt(JOptionPane.showInputDialog(""
+					+ "Lukk Meny (0)\n"
+					+ "Søke etter ansatt på ansattID(1)\n"
+					+ "Søke etter ansatt på Brukernavn (2)\n"
+					+ "Utliste alle Ansatte (3)\n"
+					+ "Oppdater Ansatt Stiling/Lønn (4)\n"
+					+ "Legg til ny Ansatt (5)\n"
+					+ "Input valg:"
+			));
 			if (valg == 0) {
 				active = 0;
 				System.out.println(">Stenger meny...");
@@ -110,7 +118,6 @@ public class main {
 			}
 			else if (valg == 5) {
 			    try {
-			        String idInn = JOptionPane.showInputDialog("Sett inn ID:");
 			        String brukernavnInn = JOptionPane.showInputDialog("Sett inn brukernavn:");
 			        String fornavnInn = JOptionPane.showInputDialog("Sett inn fornavn:");
 			        String etternavnInn = JOptionPane.showInputDialog("Sett inn etternavn:");
@@ -120,13 +127,17 @@ public class main {
 			        String prosjektInn = JOptionPane.showInputDialog("Sett inn prosjekt:");
 
 			        Ansatt nyAnsatt = new Ansatt();
-			        nyAnsatt.setId(idInn);
+			        //nyAnsatt.setId(idInn);
 			        nyAnsatt.setBrukernavn(brukernavnInn);
 			        nyAnsatt.setFornavn(fornavnInn);
 			        nyAnsatt.setEtternavn(etternavnInn);
 			        nyAnsatt.setStilling(stillingInn);
 			        nyAnsatt.setMånedslønn(lonnInn);
-			        // nyAnsatt.setAvdeling(avdelingInn);  // TODO: String til Avdeling
+			        
+			        int avdelingID = Integer.parseInt(avdelingInn);
+			        Avdeling valgtAvdeling = em.find(Avdeling.class, avdelingID);
+			        nyAnsatt.setAvdeling(valgtAvdeling);
+			        
 			        nyAnsatt.setProsjekter(prosjektInn);
 			        nyAnsatt.setDato(new java.sql.Timestamp(System.currentTimeMillis()));
 

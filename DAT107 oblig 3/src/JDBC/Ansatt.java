@@ -38,7 +38,7 @@ public class Ansatt {
     private String prosjekter;
 
     @ManyToOne
-    @JoinColumn(name = "avdelingID", referencedColumnName = "avdelingID")
+    @JoinColumn(name = "avdelingid", referencedColumnName = "avdelingid")
     private Avdeling avdeling;
 
     public Ansatt() {}
@@ -56,8 +56,7 @@ public class Ansatt {
         this.prosjekter = prosjekter;
     }
 
-    // Getters and setters...
-
+    /* brukes ikke lengre */
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
