@@ -13,7 +13,7 @@ public class Ansatt {
     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "avdelingID")
+    @Column(name = "ansattID")
     private int id;
 
     @Column(name = "brukernavn", length = 4, nullable = false)
