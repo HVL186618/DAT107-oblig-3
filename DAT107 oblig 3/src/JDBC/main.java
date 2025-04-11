@@ -89,7 +89,7 @@ public class main {
 			}
 			else if (valg == 4 ) {
 				//TODO - fiks koden.
-				String idInput = JOptionPane.showInputDialog("Hva ID vil du søke for?");
+				int id = Integer.parseInt(JOptionPane.showInputDialog("Hva ID vil du søke for?"));
 				int gyldigValg = 0;
 				elementValg = JOptionPane.showInputDialog("Valg: stilling, månedslønn\nHva du vil endre for brukeren?:");
 				/*
@@ -106,7 +106,7 @@ public class main {
 				*/
 				String endreValg = JOptionPane.showInputDialog("Hva skal verdien i '" + elementValg + "' endres til?:");
 
-				Ansatt valg4 = em.find(Ansatt.class, idInput);
+				Ansatt valg4 = em.find(Ansatt.class, id);
 				
 				em.getTransaction().begin();
 				if (elementValg == "stilling") valg4.setStilling(endreValg);
