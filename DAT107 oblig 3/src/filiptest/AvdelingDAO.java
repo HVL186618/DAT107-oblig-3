@@ -10,18 +10,18 @@ public class AvdelingDAO {
 	private EntityManagerFactory emf;
 	
 	public AvdelingDAO() {
-        emf = Persistence.createEntityManagerFactory("PersonAnsattStudentPU",
+        emf = Persistence.createEntityManagerFactory("avdelingPU",
 				Map.of("jakarta.persistence.jdbc.password", Passwords.password))
         		;
 	}
 	
-	public Avdeling finnAvdelingMedId(String id) {
+	public Avdeling finnAvdelingMedId(String avdelingid) {
 
         EntityManager em = emf.createEntityManager();
 
         Avdeling avdeling = null;
         try {
-            avdeling = em.find(Avdeling.class, id);
+            avdeling = em.find(Avdeling.class, avdelingid);
         } finally {
             em.close();
         }

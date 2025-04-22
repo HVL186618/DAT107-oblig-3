@@ -39,9 +39,9 @@ public class Ansatt {
     @Column(name = "prosjekter", length = 30)
     private String prosjekter;
 
-    @ManyToOne
-    @JoinColumn(name = "avdelingid", referencedColumnName = "avdelingid")
-    private Avdeling avdeling;
+//    @ManyToOne
+  //  @JoinColumn(name = "avdelingid", referencedColumnName = "avdelingid")
+   // private Avdeling avdeling;
 
     public Ansatt() {}
 
@@ -54,7 +54,7 @@ public class Ansatt {
         this.dato = dato;
         this.stilling = stilling;
         this.månedslønn = månedslønn;
-        this.avdeling = avdeling;
+       // this.avdeling = avdeling;
         this.prosjekter = prosjekter;
     }
 
@@ -80,17 +80,11 @@ public class Ansatt {
     public String getMånedslønn() { return månedslønn; }
     public void setMånedslønn(String månedslønn) { this.månedslønn = månedslønn; }
 
-    public Avdeling getAvdeling() { return avdeling; }
-    public void setAvdeling(Avdeling avdeling) { this.avdeling = avdeling; }
+    //public Avdeling getAvdeling() { return avdeling; }
+    //public void setAvdeling(Avdeling avdeling) { this.avdeling = avdeling; }
 
     public String getProsjekter() { return prosjekter; }
     public void setProsjekter(String prosjekter) { this.prosjekter = prosjekter; }
 
-    @Override
-    public String toString() {
-        return String.format(
-            "[ansattID: %s, brukernavn: %s, fornavn: %s, etternavn: %s, dato: %s, stilling: %s, månedslønn: %s, avdeling: %s, prosjekter: %s]",
-            id, brukernavn, fornavn, etternavn, dato, stilling, månedslønn, avdeling, prosjekter
-        );
-    }
+   
 }

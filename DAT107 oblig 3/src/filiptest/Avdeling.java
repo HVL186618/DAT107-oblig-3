@@ -2,15 +2,17 @@ package filiptest;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity
+@Entity 
+@Table(name = "avdeling", schema = "schemaavdeling")
 public class Avdeling {
 	@Id
-	private int avdelingid;
+	private String avdelingid;
 	private String navn;
 	private String sjefnavn;
 	
-	public int getAvdelingid() {
+	public String getAvdelingid() {
 		return avdelingid;
 	}
 	
@@ -22,7 +24,7 @@ public class Avdeling {
 		return sjefnavn;
 	}
 	
-	public void setId(int i) {
+	public void setAvdelingid(String i) {
 		avdelingid=i;
 	}
 	
@@ -33,4 +35,10 @@ public class Avdeling {
 	public void setSjefnavn(String i) {
 		sjefnavn=i;
 	}
+
+	@Override
+	public String toString() {
+		return "Avdeling [avdelingid=" + avdelingid + ", navn=" + navn + ", sjefnavn=" + sjefnavn + "]";
+	}
+	
 }
