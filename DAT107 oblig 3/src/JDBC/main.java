@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import filiptest.Avdeling;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.EntityManager;
