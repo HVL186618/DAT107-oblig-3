@@ -3,6 +3,8 @@ package JDBC;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 
+import filiptest.Avdeling;
+
 @Entity
 @Table(name = "Ansatt", schema = "SchemaAnsatt")
 public class Ansatt {
